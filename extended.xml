@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DatasheetFeed xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/F:/GitHub/hazmat-exchange/qualisys-hazmat-exchange.xsd">
+ xsi:noNamespaceSchemaLocation="qualisys-hazmat-exchange.xsd">
     <Datasheet>
         <InformationFromExportingSystem>
             <XmlStandardVersionNo>4.4.0</XmlStandardVersionNo>
