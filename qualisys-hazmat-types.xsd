@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="TransportUsaIdNo">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(UN|NA)\d\d\d\d"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TransportUnIdNo">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="UN\d\d\d\d"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- see https://www.liquid-technologies.com/xml-schema-tutorial/xsd-extending-types#xsi-type -->
+
+<!--<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:ct="ct" xmlns:dt="dt">
+    <xs:import namespace="dt" schemaLocation="../sdscom-xml/SDSComXMLDT.xsd"/>
+    <xs:import namespace="ct" schemaLocation="../sdscom-xml/SDSComXMLCT.xsd"/> -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="../sdscom-xml/SDSComXML.xsd"/>
+    <xs:include schemaLocation="../sdscom-xml/SDSComXMLCT.xsd"/>
+    <xs:include schemaLocation="../sdscom-xml/SDSComXMLDT.xsd"/>
+    <xs:include schemaLocation="qualisys-hazmat-types.xsd"/>
+    <xs:complexType name="MoreTransportUnNumbers">
+        <xs:complexContent>
+            <xs:extension base="TransportUnNumbers">
+                <xs:sequence>
+                    <xs:element name="UnNoCanada" minOccurs="0" type="TransportUnIdNo"/>
+                    <xs:element name="IdNoUsaDot" minOccurs="0" type="TransportUsaIdNo">
+                        <xs:annotation>
+                            <xs:documentation>U.S. transportation numbers are either preceded with "UN" or with "NA"</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="MoreTransportProperShippingNames">
+        <xs:complexContent>
+            <xs:extension base="TransportProperShippingNames">
+                <xs:sequence>
+                    <xs:element name="Canada">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="ProperShippingNameEnglish" type="Phrase">
+                                    <xs:annotation>
+                                        <xs:documentation>Content should be in English language</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="ProperShippingNameNational" type="Phrase">
+                                    <xs:annotation>
+                                        <xs:documentation>same as the phrase text language, either English or French</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="DangerReleasingSubstanceEnglish" type="Phrase">
+                                    <xs:annotation>
+                                        <xs:documentation>Content should be in English language</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="DangerReleasingSubstanceNational" type="Phrase">
+                                    <xs:annotation>
+                                        <xs:documentation>same as the phrase text language, either English or French</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Usa">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="ProperShippingNameEnglish" type="Phrase">
+                                    <xs:annotation>
+                                        <xs:documentation>Content should be in English language</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <!-- Updated from English only -->
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="DangerReleasingSubstanceEnglish" type="Phrase">
+                                    <xs:annotation>
+                                        <xs:documentation>Content should be in English language</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="MoreTransportHazardClassifications">
+        <xs:complexContent>
+            <xs:extension base="TransportHazardClassifications">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Canada">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="1" name="Class" type="TransportClass"/>
+                                <xs:element maxOccurs="2" minOccurs="0" name="Subrisk" type="TransportClass"/>
+                                <xs:element maxOccurs="3" minOccurs="0" name="HazardLabel" type="TransportClass"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Usa">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="1" name="Class" type="TransportClass"/>
+                                <xs:element maxOccurs="2" minOccurs="0" name="Subrisk" type="TransportClass"/>
+                                <xs:element maxOccurs="3" minOccurs="0" name="HazardLabel" type="TransportClass"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="MoreTransportPackingGroups">
+        <xs:complexContent>
+            <xs:extension base="TransportPackingGroups">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="PackingGroupCanada" type="PackingGroupEnum"/>
+                    <xs:element minOccurs="0" name="PackingGroupUsa" type="PackingGroupEnum"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="MoreTransportEnvironmentalHazards">
+        <xs:complexContent>
+            <xs:extension base="TransportEnvironmentalHazards">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="Canada">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="EnvironmHazardCanada" type="Phrase">
+                                    <xs:annotation>
+                                        <xs:documentation>either "Environmentally hazardous" or empty</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="MarinePollutant">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="P"/>
+                                            <xs:enumeration value="PP"/>
+                                            <xs:enumeration value="*"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="EnvironmHazardUsa" type="Phrase">
+                        <xs:annotation>
+                            <xs:documentation>either "Environmentally hazardous" or empty</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="MoreTransportOtherInformation">
+        <xs:complexContent>
+            <xs:extension base="TransportOtherInformation">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="CanadaOtherInformation">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="1" minOccurs="0" name="LimitedQty" type="string20"> </xs:element>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="SpecialProvisions" type="string4"/>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="OtherInfo" type="Phrase"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="UsaOtherInformation">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="1" minOccurs="0" name="LimitedQtyPassengerRail" type="string20"> </xs:element>
+                                <xs:element maxOccurs="1" minOccurs="0" name="LimitedQtyCargo" type="string20"> </xs:element>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="SpecialProvisions" type="string4"/>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="OtherInfo" type="Phrase"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="MoreNationalRegulations">
+        <xs:complexContent>
+            <xs:extension base="NationalRegulations">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="NationalLegislationCanada">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="DslListed" type="xs:boolean"/>
+                                <xs:element minOccurs="0" name="NdslListed" type="xs:boolean"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="NationalLegislationUSA">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="Federal">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="0" name="TscaListed" type="xs:boolean"/>
+                                            <xs:element minOccurs="0" name="TscaHpvc" type="xs:boolean"/>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="State"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>
