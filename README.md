@@ -10,7 +10,7 @@ Qualisys hazmat-exchange is an extension to SDScom to cover additional legal are
 -   Usually, the logical unit for data exchange is a product or composition, not a document. In other words: One set of data should cover all necessary legal areas, not just one.
 -   The set of required legal areas is defined by the market of a company and not restricted to the European Union.
 
-hazmat-exchange is based on SDScom because SDScom is the only vendor-independent standard to cover chemical regulatory content, it is comprehensive and continuously maintained and published under a CC license. It was started in April 2018 and will grow continuouly (unless data would be added to SDScom, in which case it will be removed here).
+hazmat-exchange is based on SDScom because SDScom is the only vendor-independent standard to cover chemical regulatory content, it is comprehensive and continuously maintained and published under a CC license. It was started in April 2018 and will grow continuously - unless data is added to SDScom, in which case it will be removed here. From that point of view, hazmat-exchange acts as a testbed for future SDScom enhancements.
 
 Scope
 -----
@@ -19,8 +19,9 @@ Currently, hazmat-exchange covers the following additional data:
 
 -   USA: DOT transport information, TSCA inventory / TSCA HPVC listing
 -   Canada: TDG transport information, DSL/NDSL listing
+-   Japan: ENCS listing incl. MITI numbers, PDSCL classification
 
-Please note that this is not equal to a full coverage of SDS data for USA or Canada!
+Please note that this is not equal to a full coverage of SDS data for any of the named countries!
 
 Roadmap
 -------
@@ -61,4 +62,4 @@ Qualisys offers free support for hazmat-exchange via GitHub issues. Please also 
 > Dr. Dirk Henckels
 > Qualisys GmbH
 > <dirk.henckels@qualisys.eu>
-> Phone +40 2173 39916 114
+> Phone +49 2173 39916 114

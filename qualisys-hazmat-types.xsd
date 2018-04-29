@@ -10,4 +10,11 @@
             <xs:pattern value="UN\d\d\d\d"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="NationalJapanPdscl">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="deleterious"/>
+            <xs:enumeration value="poisonous"/>
+            <xs:enumeration value="special"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>

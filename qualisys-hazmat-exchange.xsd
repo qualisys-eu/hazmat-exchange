@@ -182,6 +182,15 @@
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
+                    <xs:element minOccurs="0" name="NationalLegislationJapan">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="EncsListed" type="xs:boolean"/>
+                                <xs:element minOccurs="0" name="MitiNo" type="xs:string"/>
+                                <xs:element minOccurs="0" name="Pdscl" type="NationalJapanPdscl"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
                     <xs:element minOccurs="0" name="NationalLegislationUSA">
                         <xs:complexType>
                             <xs:sequence>
